@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Launch Radar — pre-token protocols ranked by implied value</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to the board</a>
+<div class="shell">
+  <header class="masthead">
+    <div class="brand">
+      <span class="radar-mark" aria-hidden="true">
+        <svg viewBox="0 0 48 48" width="48" height="48">
+          <circle cx="24" cy="24" r="21" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.45"/>
+          <circle cx="24" cy="24" r="13" fill="none" stroke="currentColor" stroke-width="1" opacity="0.35"/>
+          <circle cx="24" cy="24" r="5" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+          <path d="M24 24 L42 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="31" cy="17" r="3" fill="currentColor"/>
+          <circle cx="17" cy="30" r="2" fill="currentColor" opacity="0.7"/>
+        </svg>
+      </span>
+      <div>
+        <h1>Token Launch Radar</h1>
+        <p class="tagline">Pre-token protocols, ranked by what a launch would be worth — and how to farm each one.</p>
+      </div>
+    </div>
+    <dl class="stats" id="stats" aria-label="Snapshot summary"></dl>
+  </header>
+
+  <section class="model-strip" id="model-strip" aria-label="How the value model works"></section>
+
+  <nav class="tabs" id="tabs" aria-label="Views">
+    <button type="button" data-view="board" aria-pressed="true">Board</button>
+    <button type="button" data-view="live" aria-pressed="false">Already trading</button>
+    <button type="button" data-view="method" aria-pressed="false">Method</button>
+  </nav>
+
+  <section class="controls" id="controls" aria-label="Board filters">
+    <label class="field search-field">Search
+      <input type="search" id="q" placeholder="Name, slug or category…" autocomplete="off">
+    </label>
+    <label class="field">Category
+      <select id="f-category"><option value="">All categories</option></select>
+    </label>
+    <label class="field">Chain
+      <select id="f-chain"><option value="">All chains</option></select>
+    </label>
+    <label class="field">Min TVL
+      <select id="f-tvl">
+        <option value="0">Any size</option>
+        <option value="5000000">$5M+</option>
+        <option value="50000000">$50M+ (watchlist floor)</option>
+        <option value="250000000">$250M+</option>
+        <option value="1000000000">$1B+</option>
+      </select>
+    </label>
+    <label class="check"><input type="checkbox" id="f-watchlist"> Watchlist only</label>
+    <p class="showing" id="showing" role="status"></p>
+  </section>
+
+  <section class="detail" id="detail" hidden></section>
+
+  <main id="main">
+    <div id="board-wrap"></div>
+    <div id="live-wrap" hidden></div>
+    <div id="method-wrap" hidden></div>
+  </main>
+
+  <footer class="foot" id="foot"></footer>
+</div>
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
