@@ -310,13 +310,13 @@ export function buildBoard(snapshot: Snapshot, model: ModelConstants = MODEL): B
     age_days: s.v.age,
     implied_value_usd: s.v.implied,
     model: {
-      multiple: round4(s.v.multiple),
+      multiple: s.v.multiple,
       multiple_basis: s.v.basis,
       comparables: s.v.comparables,
       growth_pct: round4(s.v.growthPct),
-      growth_multiplier: round4(s.v.growthMult),
-      maturity_multiplier: round4(s.v.maturityMult),
-      breadth_multiplier: round4(s.v.breadthMult),
+      growth_multiplier: s.v.growthMult,
+      maturity_multiplier: s.v.maturityMult,
+      breadth_multiplier: s.v.breadthMult,
       age_days: s.v.ageForModel,
     },
     farm_steps: farmSteps(s.p, s.v.age).map(stepText),
@@ -391,12 +391,12 @@ const CHEAP_CHAINS = [
   'superseed', 'sanko', 'degen', 'apechain', 'gravity', 'hemi', 'tac', 'plasma', 'stable',
 ];
 
-/** What one transaction costs on a chain, by its fee tier. */
-function gasFor(chain: string): string {
+/** What gas costs on a chain, by its fee tier: the amount phrase the steps reuse. */
+function gasAmount(chain: string): string {
   const c = chain.toLowerCase();
-  if (c === 'ethereum') return 'about $8 to $25 of gas per transaction';
-  if (CHEAP_CHAINS.some((n) => c.includes(n))) return 'under $1 of gas per transaction';
-  return 'about $1 to $5 of gas per transaction';
+  if (c === 'ethereum') return 'about $8 to $25';
+  if (CHEAP_CHAINS.some((n) => c.includes(n))) return 'under $1';
+  return 'about $1 to $5';
 }
 
 /** A category's farming verbs: the opening position and the weekly repeat. */
@@ -514,23 +514,23 @@ export function farmSteps(p: SnapshotProtocol, age: number | null): FarmStep[] {
   const chain = chainOf(p);
   const capital = capitalFor(p);
   const hold = holdDaysFor(age);
-  const gas = gasFor(chain);
+  const gas = gasAmount(chain);
   const category = (p.category ?? '').toLowerCase();
   const play = PLAYS.find((pl) => pl.match(category)) ?? DEFAULT_PLAY;
   return [
     {
       text: 'Open a fresh wallet that holds only the funds you plan to farm, write its seed phrase on paper, and keep that paper offline.',
-      cost: gas.replace('per transaction', 'for the first transaction'),
+      cost: `${gas} of gas for the first transaction`,
       time: '10 minutes',
     },
     {
       text: fill(play.open, p, capital, chain),
-      cost: `$${capital} of capital plus ${gas}`,
+      cost: `$${capital} of capital plus ${gas} of gas`,
       time: '20 minutes to set up',
     },
     {
       text: fill(play.weekly, p, capital, chain),
-      cost: `${gas} a week`,
+      cost: `${gas} of gas a week`,
       time: '10 minutes a week',
     },
     {
@@ -545,7 +545,7 @@ export function farmSteps(p: SnapshotProtocol, age: number | null): FarmStep[] {
     },
     {
       text: 'Keep a farm log with the wallet, the dates and every transaction hash, and unwind in two tranches at the end, leaving dust for gas.',
-      cost: `exit gas of ${gas}`,
+      cost: `${gas} of gas to unwind`,
       time: '10 minutes, plus the unwind',
     },
   ];

@@ -233,7 +233,7 @@
   function stepHtml(step) {
     var at = step.lastIndexOf(' Cost: ');
     if (at < 0) return '<li>' + esc(step) + '</li>';
-    return '<li>' + esc(step.slice(0, at)) + '. <span class="cost-time">' + esc(step.slice(at + 1)) + '</span></li>';
+    return '<li>' + esc(step.slice(0, at)) + ' <span class="cost-time">' + esc(step.slice(at + 1)) + '</span></li>';
   }
 
   /** Render the detail panel for one protocol, above the board. */
