@@ -1,9 +1,8 @@
 # token-launch-radar
 
 [![make.fun · token-radar-01](https://make.fun/badge/token-radar-01.svg)](https://make.fun/bounty/token-radar-01?utm_source=github&utm_medium=readme&utm_campaign=token-radar-01)
-<!-- The rank/reward badges below need the repository's real GitHub owner in place of OWNER before submitting. -->
-[![rank](https://make.fun/badge/token-radar-01/OWNER/token-launch-radar/rank.svg)](https://make.fun/bounty/token-radar-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=token-radar-01)
-[![reward](https://make.fun/badge/token-radar-01/OWNER/token-launch-radar/reward.svg)](https://make.fun/bounty/token-radar-01?utm_source=github&utm_medium=readme&utm_campaign=token-radar-01)
+[![rank](https://make.fun/badge/token-radar-01/wittycoyote79/token-launch-radar/rank.svg)](https://make.fun/bounty/token-radar-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=token-radar-01)
+[![reward](https://make.fun/badge/token-radar-01/wittycoyote79/token-launch-radar/reward.svg)](https://make.fun/bounty/token-radar-01?utm_source=github&utm_medium=readme&utm_campaign=token-radar-01)
 
 A token launch radar: it reads a sealed DefiLlama snapshot, finds the protocols that record no token yet, ranks them by an implied launch value derived from the snapshot's own figures, and hands in a dashboard with a board, a detail view per protocol, filters, and a concrete farm plan for every row. The value model anchors each protocol's TVL multiple to the live-token comparables in the same category (falling back to the whole market's median), then adjusts for seven-day growth, for how long the protocol has run with no token, and for how many chains it runs on. No protocol name is ever special-cased: the same function scores every row.
 
